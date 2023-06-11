@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inputs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbardett <mbardett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:33:23 by mbardett          #+#    #+#             */
-/*   Updated: 2022/09/17 17:47:09 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/11 16:24:52 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	ft_time(t_game *game)
 	game->player.frame_count++;
 	game->enemy.frame_count++;
 	game->coll.frame_count++;
+	game->wall.framecount++;
 	game->time++;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:39:46 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/10 13:56:32 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/11 17:34:25 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ void	game_init(t_game *game)
 	int	y;
 
 	game->mlx = mlx_init();
-	y = game->dimensions->map_lenght * 64;
-	x = game->dimensions->map_height * 64;
+	// y = game->dimensions->map_lenght * 64;
+	// x = game->dimensions->map_height * 64;
+	y = game->dimensions->map_lenght * 32;
+	x = game->dimensions->map_height * 32;
 	game->mlx_win = mlx_new_window(game->mlx, y, x, "so_long");
 	game->moves_counter = 0;
 }

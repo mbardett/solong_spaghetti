@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbardett <mbardett@student.42.fr>          +#+  +:+       +#+         #
+#    By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/15 22:15:59 by mbardett          #+#    #+#              #
-#    Updated: 2022/09/18 16:51:42 by mbardett         ###   ########.fr        #
+#    Updated: 2023/06/11 18:34:39 by mbardett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS = ./src/coll.c \
 		./src/enemy_movement.c \
 		./src/list_management.c \
 		./src/ft_enemy_utils.c \
+		./src/gui.c \
 		main.c
 
 OBJS = $(SRCS:.c=.o)

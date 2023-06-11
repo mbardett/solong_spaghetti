@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbardett <mbardett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 17:50:40 by mbardett          #+#    #+#             */
-/*   Updated: 2022/09/20 15:33:42 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/11 17:26:48 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	move_player_aux(t_game *game, int key)
 	matrix = game->dimensions->map_matrix;
 	x = game->dimensions->x + x_dir(key);
 	y = game->dimensions->y + y_dir(key);
-	if (matrix[y][x] != '1')
+	if (matrix[y][x] != '1' || matrix[y][x] != 'f')
 	{
 		if (!(matrix[y][x] == 'E' && c != 0))
 			check_player_movement(game, x, y);

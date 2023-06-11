@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbardett <mbardett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 12:47:10 by mbardett          #+#    #+#             */
-/*   Updated: 2022/09/21 17:31:01 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/11 18:34:05 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	draw(t_game *game)
 	int		i;
 	int		j;
 	char	c;
-	char	*str;
+	// char	*str;
 
 	j = 0;
 	ft_time(game);
@@ -74,17 +74,19 @@ int	draw(t_game *game)
 		}
 		j++;
 	}
-	str = ft_itoa(game->moves_counter);
-	mlx_string_put(game->mlx, game->mlx_win, game->dimensions->map_lenght * 32,
-		(game->dimensions->map_height) - 1, TEXT_COLOR, str);
-	free(str);
+	// str = ft_itoa(game->moves_counter);
+	// mlx_string_put(game->mlx, game->mlx_win, game->dimensions->map_lenght * 32,
+	// 	(game->dimensions->map_height) - 1, TEXT_COLOR, str);
+	// free(str);
 	return (1);
 }
 
 int	draw_level(t_game *game, int i, int j, char c)
 {
 	if (c == '1')
-		walls_anim(game, j * 64, i * 64);
+		walls_anim(game, j * 64 * 1/2, i * 64 * 1/2);
+	else if (c == 'f')
+		candle_anim(game, j * 64 * 1/2, i * 64 * 1/2);
 	else if (c == '0')
 		floor_anim(game, j * 64, i * 64);
 	else if (c == 'C')
@@ -94,6 +96,8 @@ int	draw_level(t_game *game, int i, int j, char c)
 	else if (c == 'P')
 		player_anim(game, j * 64, i * 64);
 	else if (c == 'M')
-		enemy_anim(game, j * 64, i * 64);
+		enemy_anim(game, j * 64 * 1/2, i * 64* 1/2);
+	else if (c == 'x')
+		gui_anim(game, j * 64, i * 64);
 	return (1);
 }

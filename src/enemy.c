@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:07:32 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/10 14:23:34 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/11 15:59:40 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,28 @@ void	open_enemy_imgs(t_game *game)
 // 	ETC ETC ETC
 void	enemy_anim(t_game *game, int j, int i)
 {
-	if (game->enemy.frame_count <= 4)
+	if (game->enemy.frame_count <= 5)
 		game->enemy_mesh = game->enemy.e_frame0;
-	else if (game->enemy.frame_count <= 8)
+	else if (game->enemy.frame_count <= 10)
 		game->enemy_mesh = game->enemy.e_frame1;
-	else if (game->enemy.frame_count <= 12)
+	else if (game->enemy.frame_count <= 15)
 		game->enemy_mesh = game->enemy.e_frame2;
-	else if (game->enemy.frame_count <= 16)
-		game->enemy_mesh = game->enemy.e_frame3;
 	else if (game->enemy.frame_count <= 20)
+		game->enemy_mesh = game->enemy.e_frame3;
+	else if (game->enemy.frame_count <= 25)
 		game->enemy_mesh = game->enemy.e_frame4;
-	else if (game->enemy.frame_count <= 24)
+	else if (game->enemy.frame_count <= 30)
 		game->enemy_mesh = game->enemy.e_frame5;
-	else if (game->enemy.frame_count <= 28)
+	else if (game->enemy.frame_count <= 35)
 		game->enemy_mesh = game->enemy.e_frame6;
-	else if (game->enemy.frame_count <= 32)
-		game->enemy_mesh = game->enemy.e_frame7;
-	else if (game->enemy.frame_count <= 36)
-		game->enemy_mesh = game->enemy.e_frame8;
 	else if (game->enemy.frame_count <= 40)
+		game->enemy_mesh = game->enemy.e_frame7;
+	else if (game->enemy.frame_count <= 45)
+		game->enemy_mesh = game->enemy.e_frame8;
+	else if (game->enemy.frame_count <= 50)
 		game->enemy_mesh = game->enemy.e_frame9;
+	else if (game->enemy.frame_count == 55)
+		game->enemy.frame_count = 0;
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->enemy_mesh, j, i);
 }
 

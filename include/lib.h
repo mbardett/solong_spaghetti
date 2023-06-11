@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 16:43:10 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/10 14:17:18 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/11 18:33:18 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ typedef struct s_wall
 {
 	int			framecount;
 	void		*w_img;
+	void		*w_candle1;
+	void		*w_candle2;
+	void		*w_candle3;
+	void		*w_candle4;
+	void		*w_candle5;
+	void		*w_innerv;
+	void		*w_innerh;
 }	t_wall;
 
 typedef struct s_player
@@ -188,6 +195,7 @@ typedef struct s_game
 	void				*coll_mesh;
 	void				*wall_mesh;
 	void				*floor_mesh;
+	void				*gui_icon;
 	void				*mlx;
 	void				*mlx_win;
 	int					total_collectibles;
@@ -238,6 +246,7 @@ void	draw_floor(t_game *game, int i, int j, char c);
 void	draw_walls(t_game *game, int i, int j, char c);
 void	open_walls(t_game *game);
 void	walls_anim(t_game *game, int i, int j);
+void	candle_anim(t_game *game, int j, int i);
 //door.c
 void	open_door_img(t_game *game);
 void	door_anim(t_game *game, int i, int j);
@@ -280,6 +289,10 @@ void	refresh_frames(t_game *game);
 void	open_all_sources(t_game *game);
 int		check_arg_ber(int argc, char **argv);
 void	game_init(t_game *game);
+//gui.c
+void    open_gui_imgs(t_game *game);
+void    gui_anim(t_game *game, int j, int i);
+void    draw_gui(t_game *game, int i, int j, char c);
 //list_management.c
 // t_enemy	*ft_lstnew(int x, int y);
 // t_enemy	*ft_lstlast(t_enemy *lst);

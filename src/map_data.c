@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:29:51 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/10 13:45:20 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/11 17:21:10 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	new_readfile(char *nome_file, t_coordinate *data)
 	data->map_lenght = get_length(nome_file) + 2;
 	data->map_height = get_height(nome_file) + 6;
 	data->map_matrix = (char **)malloc(sizeof(char *) * data->map_height + 1);
-	while (i <= data->map_height)
+	while (i < data->map_height + 1)
 	{
 		data->map_matrix[i] = malloc(sizeof(char ) * data->map_lenght + 1);
 		data->map_matrix[i][0] = 'l';
@@ -138,20 +138,39 @@ void	new_readfile(char *nome_file, t_coordinate *data)
 	i = 1;
 	j = 1;
 	write(1, "CULO2\n", 6);
-	while (i < data->map_height - 5 && join != NULL)
+	// join = gnl_so_long(fd);
+	// printf("")
+	while (i < data->map_height - 5)
 	{
 		join = gnl_so_long(fd);
 		printf("%s\n", join);
 		j = 1;
-		while (j < data->map_lenght - 2)
+		while (j < data->map_lenght - 1)
 		{
-			if (join[j - 1] == '\n')
-				continue;;
+			// if (join[j - 1] == '\n')
+			// 	continue;;
 			data->map_matrix[i][j] = join[j-1];
+			write(1, "joined\n", 7);
 			j++;
 		}
 		// free(join);
 		i++;
+	}
+	i = 1;
+	j = 1;
+	while (i < data->map_height -4)
+	{
+		j = 1;
+		while (j < data->map_height -1)
+		{
+			if (data->map_matrix[1][j] == '1' && ((data->map_lenght -2) / 3) % j == 0)
+				data->map_matrix[1][j] = 'f';
+			else if ( i > 1 && data->map_matrix[i][j] == '1' && data->map_matrix[i + 1][j] != '1' )
+				data->map_matrix[1][j] = 'f';
+			j++;
+		}
+		i++;
+		
 	}
 	write(1, "CULO1\n", 6);
 	free(join);
