@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 15:10:02 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/11 17:19:30 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:59:30 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,28 @@ void	open_walls(t_game *game)
 	game->wall.framecount = 0;
 	game->wall.w_img = mlx_xpm_file_to_image(game->mlx, "xpm/Wall-bricks-tileable.png.xpm",
 			&game->img_size.img_width, &game->img_size.img_height);
+	// write(1, "t\n", 2);
+
 	game->wall.w_candle1 = mlx_xpm_file_to_image(game->mlx, "xpm/wall-brick-candle1.png.xpm",
 			&game->img_size.img_width , &game->img_size.img_height);
+	// write(1, "1\n", 2);
+
 	game->wall.w_candle2 = mlx_xpm_file_to_image(game->mlx, "xpm/wall-brick-candle2.png.xpm",
 			&game->img_size.img_width, &game->img_size.img_height);
+		// write(1, "2\n", 2);
+
 	game->wall.w_candle3 = mlx_xpm_file_to_image(game->mlx, "xpm/wall-brick-candle3.png.xpm",
 			&game->img_size.img_width, &game->img_size.img_height);
+	// write(1, "3\n", 2);
+
 	game->wall.w_candle4 = mlx_xpm_file_to_image(game->mlx, "xpm/wall-brick-candle4.png.xpm",
 			&game->img_size.img_width, &game->img_size.img_height);
+		// write(1, "4\n", 2);
+
 	game->wall.w_candle5 = mlx_xpm_file_to_image(game->mlx, "xpm/wall-brick-candle5.png.xpm",
 			&game->img_size.img_width, &game->img_size.img_height);
+		// write(1, "5\n", 2);
+
 }
 
 void	walls_anim(t_game *game, int j, int i)
@@ -58,6 +70,8 @@ void	draw_walls(t_game *game, int i, int j, char c)
 {
 	if (c == '1')
 		walls_anim(game, j, i);
-	else if (c == 'f')
-		candle_anim(game,i , j);
+	if (c == 'f')
+		candle_anim(game, j, i);
 }
+
+

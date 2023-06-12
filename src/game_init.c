@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:39:46 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/11 17:34:25 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/12 15:49:02 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	open_all_sources(t_game *game)
 	open_coll_imgs(game);
 	open_enemy_imgs(game);
 	open_player_imgs(game);
+	open_gui_imgs(game);
 }
 
 //checks correct number of args and correct file extension of the last

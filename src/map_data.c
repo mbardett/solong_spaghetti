@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:29:51 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/11 17:21:10 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:10:55 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,23 +117,52 @@ void	new_readfile(char *nome_file, t_coordinate *data)
 	data->map_matrix = (char **)malloc(sizeof(char *) * data->map_height + 1);
 	while (i < data->map_height + 1)
 	{
-		data->map_matrix[i] = malloc(sizeof(char ) * data->map_lenght + 1);
-		data->map_matrix[i][0] = 'l';
-		data->map_matrix[i][data->map_lenght] = 'r';
+		data->map_matrix[i] = malloc(sizeof(char ) * data->map_lenght);
+		// data->map_matrix[i][0] = 'l';
+		// data->map_matrix[i][data->map_lenght] = 'r';
+		// data->map_matrix[i][data->map_lenght + 1] = '\n';
 		i++;
 	}
-	memset(data->map_matrix[0], 'u', data->map_lenght);
-	memset(data->map_matrix[data->map_height - 4], 'b', data->map_lenght);
-	memset(data->map_matrix[data->map_height -3], 'u', data->map_lenght);
-	memset(data->map_matrix[data->map_height], 'b', data->map_lenght);
+	memset(data->map_matrix[0], 'u', data->map_lenght -1);
+	memset(data->map_matrix[data->map_height - 5], 'b', data->map_lenght -1);
+	memset(data->map_matrix[data->map_height -4], 'u', data->map_lenght -1);
+	memset(data->map_matrix[data->map_height -1], 'b', data->map_lenght -1);
+	i = 1;
+	while (i < data->map_height)
+	{
+		j = 0;
+		data->map_matrix[i][0] = 'l';
+		if (i > data->map_height - 4 && i < data->map_height -1)
+		{	
+			while(++j < data->map_lenght - 1)
+			{
+				if (j == 1 || j == 2)
+					data->map_matrix[i][j] = 'i';
+				else if (j == data->map_lenght -2 && i == data->map_height -3)
+					data->map_matrix[i][j] = 'S';
+				else if (j == data->map_lenght -2 && i == data->map_height -2)
+					data->map_matrix[i][j] = 'L';
+				else if (j == data->map_lenght -3 && i == data->map_height -3)
+					data->map_matrix[i][j] = 'R';
+				else if (j == data->map_lenght -3 && i == data->map_height -2)
+					data->map_matrix[i][j] = 'O';
+				else
+					data->map_matrix[i][j] = 'w';	
+			}
+		}		
+		data->map_matrix[i][data->map_lenght -1] = 'r';
+		// data->map_matrix[i][data->map_lenght] = '\0';
+		i++;
+	}
 	data->map_matrix[0][0] = 'x';
-	data->map_matrix[0][data->map_lenght] = 'x';
+	data->map_matrix[0][data->map_lenght - 1] = 'x';
+	data->map_matrix[data->map_height - 5][0] =  'x';
+	data->map_matrix[data->map_height - 5][data->map_lenght -1] =  'x';
 	data->map_matrix[data->map_height - 4][0] =  'x';
-	data->map_matrix[data->map_height - 4][data->map_lenght] =  'x';
-	data->map_matrix[data->map_height - 3][0] =  'x';
-	data->map_matrix[data->map_height - 3][data->map_lenght] =  'x';
-	data->map_matrix[data->map_height][0] =  'x';
-	data->map_matrix[data->map_height][data->map_lenght] =  'x';
+	data->map_matrix[data->map_height - 4][data->map_lenght -1] =  'x';
+	data->map_matrix[data->map_height -1][0] =  'x';
+	data->map_matrix[data->map_height -1][data->map_lenght -1] =  'x';
+	
 	//fin qui gestiti bordi e angoli GUI, mancano copia .ber, inventario, icone, text window
 	i = 1;
 	j = 1;
@@ -143,14 +172,14 @@ void	new_readfile(char *nome_file, t_coordinate *data)
 	while (i < data->map_height - 5)
 	{
 		join = gnl_so_long(fd);
-		printf("%s\n", join);
-		j = 1;
-		while (j < data->map_lenght - 1)
+		// printf("%s\n", join);
+		j = 0;
+		while (j < data->map_lenght -2)
 		{
 			// if (join[j - 1] == '\n')
 			// 	continue;;
-			data->map_matrix[i][j] = join[j-1];
-			write(1, "joined\n", 7);
+			data->map_matrix[i][j+1] = join[j];
+			//write(1, "joined\n", 7);
 			j++;
 		}
 		// free(join);
@@ -158,15 +187,15 @@ void	new_readfile(char *nome_file, t_coordinate *data)
 	}
 	i = 1;
 	j = 1;
-	while (i < data->map_height -4)
+	while (i < data->map_height -6)
 	{
 		j = 1;
-		while (j < data->map_height -1)
+		while (j < data->map_lenght +1)
 		{
-			if (data->map_matrix[1][j] == '1' && ((data->map_lenght -2) / 3) % j == 0)
-				data->map_matrix[1][j] = 'f';
-			else if ( i > 1 && data->map_matrix[i][j] == '1' && data->map_matrix[i + 1][j] != '1' )
-				data->map_matrix[1][j] = 'f';
+			if ( 1 < j && j < data->map_lenght - 2  && i == 1 && data->map_matrix[i][j] == '1' && ((data->map_lenght -2 / 3) % j == 0))
+				data->map_matrix[i][j] = 'f';
+			else if (j > 1 && 1 < i < (data->map_height - 7) && data->map_matrix[i][j] == '1' && data->map_matrix[i + 1][j] != '1' && data->map_matrix[i + 1][j + 1] != '1' && data->map_matrix[i + 1][j - 1] != '1')
+					data->map_matrix[i][j] = 'f';
 			j++;
 		}
 		i++;
@@ -175,4 +204,11 @@ void	new_readfile(char *nome_file, t_coordinate *data)
 	write(1, "CULO1\n", 6);
 	free(join);
 	close(fd);
+	i =0;
+	j =0;
+	while (i < data->map_height)
+	{
+		printf("%s\n", data->map_matrix[i]);
+		i++;
+	}
 }

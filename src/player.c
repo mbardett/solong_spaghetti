@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbardett <mbardett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 17:12:39 by mbardett          #+#    #+#             */
-/*   Updated: 2022/09/17 12:18:03 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/12 15:52:09 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,9 @@
 void	open_player_imgs(t_game *game)
 {
 	game->player.frame_count = 0;
-	game->player.p_frame1 = mlx_xpm_file_to_image(game->mlx,
-			"xpm/Player1.xpm",
-			&game->img_size.img_width, &game->img_size.img_height);
-	game->player.p_frame2 = mlx_xpm_file_to_image(game->mlx,
-			"xpm/Player2.xpm",
-			&game->img_size.img_width, &game->img_size.img_height);
-	game->player.p_frame3 = mlx_xpm_file_to_image(game->mlx,
-			"xpm/Player3.xpm",
-			&game->img_size.img_width, &game->img_size.img_height);
+	game->player.p_frame1 = mlx_xpm_file_to_image(game->mlx, "xpm/Player1.xpm", &game->img_size.img_width, &game->img_size.img_height);
+	game->player.p_frame2 = mlx_xpm_file_to_image(game->mlx, "xpm/Player2.xpm", &game->img_size.img_width, &game->img_size.img_height);
+	game->player.p_frame3 = mlx_xpm_file_to_image(game->mlx, "xpm/Player3.xpm", &game->img_size.img_width, &game->img_size.img_height);
 }
 
 void	player_anim(t_game *game, int j, int i)

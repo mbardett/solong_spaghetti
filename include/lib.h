@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 16:43:10 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/11 18:33:18 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/12 15:43:07 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ typedef struct s_game
 	t_exit_door			exit_door;
 	t_wall				wall;
 	t_floor				floor;
-	t_gui				gui;
+	t_gui				*gui;
 
 	int					moves_counter;
 	int					enemy_number;
