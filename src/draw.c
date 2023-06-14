@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 12:47:10 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/12 18:13:48 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/14 16:17:29 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,25 +83,46 @@ int	draw(t_game *game)
 
 int	draw_level(t_game *game, int i, int j, char c)
 {
-	if (c == '1')
-		walls_anim(game, j * 32 , i * 32 );
-	else if (c == 'f')
-		candle_anim(game, j * 32 , i * 32);
-	else if (c == '0')
-		floor_anim(game, j * 32, i * 32);
-	else if (c == 'C')
-		coll_anim(game, j * 32, i * 32);
-	else if (c == 'E')
-		door_anim(game, j * 32, i * 32);
-	else if (c == 'P')
-		player_anim(game, j * 32, i * 32);
-	else if (c == 'M')
-		enemy_anim(game, j * 32 , i * 32);
-	else if (c == 'x' || c == 'u' || c == 'b' || c == 'l' || c== 'r'|| c == 'w' || c == 'i' || c == 'S' || c == 'L' || c == 'O' || c == 'R')
-	{
-		write(1, "gui\n",4);
-		gui_anim(game, j *32, i *32);
-		write(1, "OPS\n",4);
-	}
+		if (c == '1')
+			walls_anim(game, j * 32 , i * 32 );
+		else if (c == 'f')
+			candle_anim(game, j * 32 , i * 32);
+		else if (c == '0')
+			floor_anim(game, j * 32, i * 32);
+		else if (c == 'C')
+			coll_anim(game, j * 32, i * 32);
+		else if (c == 'E')
+			door_anim(game, j * 32, i * 32);
+		else if (c == 'P')
+			player_anim(game, j * 32, i * 32);
+		else if (c == 'M')
+			enemy_anim(game, j * 32 , i * 32);
+		else if (c == 'x' || c == 'u' || c == 'b' || c == 'l' || c== 'r'|| c == 'w' || c == 'i' || c == 'S' || c == 'L' || c == 'O' || c == 'R')
+		{
+			// write(1, "gui\n",4);
+			// printf("i %d j %d \n", i, j);
+			gui_anim(game, j * 32, i * 32);
+			// gui_anim(game, j , i);
+			// write(1, "OPS\n",4);
+		}
+		// else if (c == 'x')
+		// 	printf("%d %d\n", i, j);
+		// 	gui_anim(game, j, i );
+		// else if (c == 'u')
+		// 	gui_anim(game, j , i );
+		// else if (c == 'b')		
+		// 	gui_anim(game, j , i );
+		// else if (c == 'l')
+		// 	gui_anim(game, j , i );			
+		// else if (c == 'r')
+		// 	gui_anim(game, j , i );
+		// else if (c == 'R')
+		// 	gui_anim(game, j , i );
+		// else if (c == 'L')
+		// 	gui_anim(game, j , i );
+		// else if ( c == 'O')
+		// 	gui_anim(game, j , i );
+		// else if (c == 'S')
+		// 	gui_anim(game, j , i );
 	return (1);
 }

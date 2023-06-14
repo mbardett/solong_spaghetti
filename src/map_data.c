@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:29:51 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/12 18:10:55 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/14 16:41:42 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,26 +117,26 @@ void	new_readfile(char *nome_file, t_coordinate *data)
 	data->map_matrix = (char **)malloc(sizeof(char *) * data->map_height + 1);
 	while (i < data->map_height + 1)
 	{
-		data->map_matrix[i] = malloc(sizeof(char ) * data->map_lenght);
+		data->map_matrix[i] = malloc(sizeof(char ) * data->map_lenght + 1);
 		// data->map_matrix[i][0] = 'l';
 		// data->map_matrix[i][data->map_lenght] = 'r';
 		// data->map_matrix[i][data->map_lenght + 1] = '\n';
 		i++;
 	}
-	memset(data->map_matrix[0], 'u', data->map_lenght -1);
-	memset(data->map_matrix[data->map_height - 5], 'b', data->map_lenght -1);
-	memset(data->map_matrix[data->map_height -4], 'u', data->map_lenght -1);
-	memset(data->map_matrix[data->map_height -1], 'b', data->map_lenght -1);
+	memset(data->map_matrix[0], 'u', data->map_lenght);
+	memset(data->map_matrix[data->map_height - 5], 'b', data->map_lenght);
+	memset(data->map_matrix[data->map_height -4], 'u', data->map_lenght );
+	memset(data->map_matrix[data->map_height -1], 'b', data->map_lenght );
 	i = 1;
-	while (i < data->map_height)
+	while (i < data->map_height + 1)
 	{
 		j = 0;
 		data->map_matrix[i][0] = 'l';
-		if (i > data->map_height - 4 && i < data->map_height -1)
+		if (i > data->map_height - 4 && i < data->map_height)
 		{	
-			while(++j < data->map_lenght - 1)
+			while(j < data->map_lenght)
 			{
-				if (j == 1 || j == 2)
+				if ((j == 1 || j == 2) && i != data->map_height -1)
 					data->map_matrix[i][j] = 'i';
 				else if (j == data->map_lenght -2 && i == data->map_height -3)
 					data->map_matrix[i][j] = 'S';
@@ -146,8 +146,9 @@ void	new_readfile(char *nome_file, t_coordinate *data)
 					data->map_matrix[i][j] = 'R';
 				else if (j == data->map_lenght -3 && i == data->map_height -2)
 					data->map_matrix[i][j] = 'O';
-				else
+				else if (data->map_matrix[i][j] != 'i' && data->map_matrix[i][j] != 'S' && data->map_matrix[i][j] != 'L' && data->map_matrix[i][j] != 'R' && data->map_matrix[i][j] != 'O' && data->map_matrix[i][j] != 'b' && data->map_matrix[i][j] != 'l')
 					data->map_matrix[i][j] = 'w';	
+				j++;
 			}
 		}		
 		data->map_matrix[i][data->map_lenght -1] = 'r';
@@ -155,7 +156,7 @@ void	new_readfile(char *nome_file, t_coordinate *data)
 		i++;
 	}
 	data->map_matrix[0][0] = 'x';
-	data->map_matrix[0][data->map_lenght - 1] = 'x';
+	data->map_matrix[0][data->map_lenght -1] = 'x';
 	data->map_matrix[data->map_height - 5][0] =  'x';
 	data->map_matrix[data->map_height - 5][data->map_lenght -1] =  'x';
 	data->map_matrix[data->map_height - 4][0] =  'x';
@@ -173,12 +174,10 @@ void	new_readfile(char *nome_file, t_coordinate *data)
 	{
 		join = gnl_so_long(fd);
 		// printf("%s\n", join);
-		j = 0;
-		while (j < data->map_lenght -2)
+		j = 1;
+		while (j < data->map_lenght -1)
 		{
-			// if (join[j - 1] == '\n')
-			// 	continue;;
-			data->map_matrix[i][j+1] = join[j];
+			data->map_matrix[i][j] = join[j -1];
 			//write(1, "joined\n", 7);
 			j++;
 		}

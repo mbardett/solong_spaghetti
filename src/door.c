@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbardett <mbardett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 11:01:06 by mbardett          #+#    #+#             */
-/*   Updated: 2022/09/17 12:20:34 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/13 18:13:24 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	open_door_img(t_game *game)
 {
 	game->exit_door.framecount = 0;
-	game->door_mesh = mlx_xpm_file_to_image(game->mlx, "xpm/Door.xpm",
+	game->door_mesh = mlx_xpm_file_to_image(game->mlx, "xpm/Wall-bricks-wooden-door-closed.png.xpm",
 			&game->img_size.img_width, &game->img_size.img_height);
 }
 

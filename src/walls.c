@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 15:10:02 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/12 16:59:30 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:25:12 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,27 +51,29 @@ void	walls_anim(t_game *game, int j, int i)
 void	candle_anim(t_game *game, int j, int i)
 {
 	if (game->wall.framecount <= 10)
-		game->wall_mesh = game->wall.w_candle1;
+		game->candle_mesh = game->wall.w_candle1;
 	else if (game->wall.framecount <= 20)
-		game->wall_mesh = game->wall.w_candle2;
+		game->candle_mesh = game->wall.w_candle2;
 	else if (game->wall.framecount <= 30)
-		game->wall_mesh = game->wall.w_candle3;
+		game->candle_mesh = game->wall.w_candle3;
 	else if (game->wall.framecount <= 40)
-		game->wall_mesh = game->wall.w_candle4;
+		game->candle_mesh = game->wall.w_candle4;
 	else if (game->wall.framecount <= 50)
-		game->wall_mesh = game->wall.w_candle5;
+		game->candle_mesh = game->wall.w_candle5;
 	else if (game->wall.framecount == 60)
 		game->wall.framecount = 0;
 	mlx_put_image_to_window(game->mlx, game->mlx_win,
-		game->wall_mesh, j, i);
+		game->candle_mesh, j, i);
 }
 
 void	draw_walls(t_game *game, int i, int j, char c)
 {
 	if (c == '1')
-		walls_anim(game, j, i);
+		walls_anim(game, j, i);		
+}
+
+void	draw_candle(t_game *game, int j, int i, char c)
+{
 	if (c == 'f')
 		candle_anim(game, j, i);
 }
-
-
