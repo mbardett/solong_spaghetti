@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 16:43:10 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/14 15:24:37 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:55:28 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <dirent.h>
+# include <sys/wait.h>
+# include <sys/stat.h>
 
 typedef struct s_coordinate
 {
@@ -100,6 +103,7 @@ typedef struct s_coll
 	void	*img2;
 	void	*img3;
 	void	*img4;
+	void	*img5;
 }	t_coll;
 
 typedef struct s_exit_door
@@ -216,6 +220,10 @@ size_t	ft_strlen(char *str);
 void	ft_putstr_fd(char *str, int fd);
 char	*ft_strjoin(char *s1, char *s2);
 void	ft_display_error(int error_type);
+int		check_spaces(const char *);
+int		ft_atoi(const char *str);
+int		ft_save(t_game *game);
+
 //spostata nel main
 int		end_game(t_game *game);
 //gnl.c + gn;_so_long.c

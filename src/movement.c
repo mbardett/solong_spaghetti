@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 17:50:40 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/11 17:26:48 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/15 14:38:59 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ void	check_player_movement(t_game *game, int x, int y)
 	}
 	if (game->dimensions->map_matrix[y][x] == 'C')
 		game->current_collectibles--;
-	if (game->dimensions->map_matrix[y][x] == 'E' && game->current_collectibles
-		== 0)
+	if (game->dimensions->map_matrix[y][x] == 'E' && game->current_collectibles == 0)
 	{
 		write(1, "YOU WON!\n", 10);
 		end_game(game);
@@ -74,7 +73,7 @@ void	move_player_aux(t_game *game, int key)
 	matrix = game->dimensions->map_matrix;
 	x = game->dimensions->x + x_dir(key);
 	y = game->dimensions->y + y_dir(key);
-	if (matrix[y][x] != '1' || matrix[y][x] != 'f')
+	if (matrix[y][x] != '1' && matrix[y][x] != 'f')
 	{
 		if (!(matrix[y][x] == 'E' && c != 0))
 			check_player_movement(game, x, y);

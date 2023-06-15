@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 12:47:10 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/14 16:17:29 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/15 14:25:03 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,20 +83,21 @@ int	draw(t_game *game)
 
 int	draw_level(t_game *game, int i, int j, char c)
 {
+	int	f = 1;
 		if (c == '1')
-			walls_anim(game, j * 32 , i * 32 );
+			walls_anim(game, j * 32 *f, i * 32 * f );
 		else if (c == 'f')
-			candle_anim(game, j * 32 , i * 32);
+			candle_anim(game, j * 32 * f , i * 32 * f);
 		else if (c == '0')
-			floor_anim(game, j * 32, i * 32);
+			floor_anim(game, j * 32 * f, i * 32 * f);
 		else if (c == 'C')
-			coll_anim(game, j * 32, i * 32);
+			coll_anim(game, j * 32 * f, i * 32 * f);
 		else if (c == 'E')
-			door_anim(game, j * 32, i * 32);
+			door_anim(game, j * 32 * f, i * 32 * f);
 		else if (c == 'P')
-			player_anim(game, j * 32, i * 32);
+			player_anim(game, j * 32 * f, i * 32 * f);
 		else if (c == 'M')
-			enemy_anim(game, j * 32 , i * 32);
+			enemy_anim(game, j * 32 * f , i * 32 * f);
 		else if (c == 'x' || c == 'u' || c == 'b' || c == 'l' || c== 'r'|| c == 'w' || c == 'i' || c == 'S' || c == 'L' || c == 'O' || c == 'R')
 		{
 			// write(1, "gui\n",4);

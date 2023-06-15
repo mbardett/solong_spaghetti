@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:35:42 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/14 16:52:01 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/15 12:42:31 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void    open_gui_imgs(t_game *game)
     printf("loaded gui img n %p\n", game->gui.saveicon);
     game->gui.resticon = mlx_xpm_file_to_image(game->mlx, "xpm/GUI/Resticon.xpm", &game->img_size.img_width, &game->img_size.img_height);
     printf("loaded gui img n %p\n", game->gui.resticon);
-    game->gui.optionsicon = mlx_xpm_file_to_image(game->mlx, "xpm/GUI/Loadicon.xpm", &game->img_size.img_width, &game->img_size.img_height);
+    game->gui.optionsicon = mlx_xpm_file_to_image(game->mlx, "xpm/GUI/Optionsicon.xpm", &game->img_size.img_width, &game->img_size.img_height);
     printf("loaded gui img n %p\n", game->gui.optionsicon);
     game->gui.bol = mlx_xpm_file_to_image(game->mlx, "xpm/GUI/left.xpm", &game->img_size.img_width, &game->img_size.img_height);
     printf("loaded gui img n %p\n", game->gui.bol);

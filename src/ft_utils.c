@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:06:46 by mbardett          #+#    #+#             */
-/*   Updated: 2022/11/03 16:27:49 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:23:52 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,39 @@ void	ft_putstr_fd(char *str, int fd)
 	while (i <= ft_strlen(str))
 		write(fd, &str[i], 1);
 	return ;
+}
+
+int	check_spaces(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while ((s[i] >= 9 && s[i] <= 13) || s[i] == ' ')
+		i++;
+	return (i);
+}
+
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	sign;
+	int	res;
+
+	i = check_spaces(str);
+	sign = 1;
+	res = 0;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-' )
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = (res * 10) + (str[i] - '0');
+		i++;
+	}
+	return (res * sign);
 }
 
 char	*ft_strjoin(char *str1, char *str2)
@@ -85,3 +118,74 @@ void	ft_display_error(int error_type)
 			ft_strlen("ERROR,initializing self-destruction sequence\n"));
 	exit (1);
 }
+
+ int	ft_save(t_game *game)
+ {
+	int	i, j;
+	i = j = 0;
+	// FILE 	*file;
+	DIR		*dir;
+	struct dirent *dent;
+	char *name;
+	char *tmp;
+	int fd;
+	int	nbr;
+	char buf[1];
+	
+	dir = NULL;
+	dent = NULL;
+	nbr = -1;
+	//file = open();
+	if (opendir("~/solong_spaghetti/saves") == NULL)
+	{
+		mkdir("~/solong_spaghetti/saves", W_OK);
+		name = "000save.ber";
+		fd = open(name, O_CREAT);
+		
+	}
+	else
+	{
+		dir = opendir("~/solong_spaghetti/saves");
+		while (readdir(dir) != NULL)
+		{	
+			name = NULL;
+			name = ft_strjoin(name,dent->d_name);
+		}
+		i = 0;
+		j = 0;
+		while (name[i] >= '0'&& name[i] <= '9')
+			i++;
+		if (i == 0)
+			name = "000save.ber";
+		else
+		{
+			tmp = malloc(sizeof(char *) * i + 1);
+			i = 0;
+			while (name[i] >= '0'&& name[i] <= '9')
+			{
+				tmp[j] = name[i];
+				i++;
+				j++;
+			}
+			tmp[j] = '\0';
+		}
+		name = ft_itoa(ft_atoi(tmp) + 1);
+		fd = open(name, O_CREAT);
+		i = 0;
+		while (read(fd, buf, 1) == 1)	
+		{
+			while ( i < game->dimensions->map_height)
+			{
+				j = 0;
+				while (j < game->dimensions->map_lenght)
+				{
+					write(fd, &game->dimensions->map_matrix[i][j], 1);
+					j++;		
+				}
+				i++;
+			}
+		}
+	}
+	closedir(dir);
+	return (0);
+ }

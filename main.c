@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 16:54:51 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/13 17:41:22 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:20:10 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,37 @@ int	end_game(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->mlx_win);
 	exit(0);
+}
+
+int	mouse_hook(int button, int x,int y, t_game *game)
+{
+	int	i = 0;
+	int j = 0;
+	
+	if (button == 1)
+	{
+		printf("X = %d Y = %d\n", x,y);
+		if (x > (game->dimensions->map_lenght - 2)* 32 && x < (game->dimensions->map_lenght -1) * 32 && y > (game->dimensions->map_height -3) * 32 && y < (game->dimensions->map_height -2)*32)
+		{
+			while (i < game->dimensions->map_height)
+			{
+				j = 0;
+				while(j < game->dimensions->map_lenght)
+				{
+					if (game->dimensions->map_matrix[i][j] == 'w')
+					{
+						ft_save(game);
+						mlx_string_put(game->mlx, game->mlx_win, j * 32, i * 32, 1315978,"Game Saved\n");
+						// usleep(200000);
+						return(0);
+					}
+					j++;
+				}
+				i++;
+			}
+		}
+	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -49,6 +80,7 @@ int	main(int argc, char **argv)
 	open_all_sources(&game);
 	game.level_init = 1;
 	game.time = 1;
+	mlx_mouse_hook(game.mlx_win, mouse_hook, &game);
 	mlx_hook(game.mlx_win, 2, 0, deal_inputs, &game);
 	mlx_hook(game.mlx_win, 17, 0, end_game, &game);
 	mlx_loop_hook(game.mlx, draw, (void *)&game);

@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:29:51 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/14 16:41:42 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/15 12:59:07 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,9 +191,9 @@ void	new_readfile(char *nome_file, t_coordinate *data)
 		j = 1;
 		while (j < data->map_lenght +1)
 		{
-			if ( 1 < j && j < data->map_lenght - 2  && i == 1 && data->map_matrix[i][j] == '1' && ((data->map_lenght -2 / 3) % j == 0))
+			if (  i == 1 && data->map_matrix[i][j] == '1' && j %5 == 0 && 1 < j && j < data->map_lenght - 2)
 				data->map_matrix[i][j] = 'f';
-			else if (j > 1 && 1 < i < (data->map_height - 7) && data->map_matrix[i][j] == '1' && data->map_matrix[i + 1][j] != '1' && data->map_matrix[i + 1][j + 1] != '1' && data->map_matrix[i + 1][j - 1] != '1')
+			else if (j > 1 && 1 < i && i< (data->map_height - 7) && data->map_matrix[i][j] == '1' && data->map_matrix[i + 1][j] != '1' && data->map_matrix[i + 1][j + 1] != '1' && data->map_matrix[i + 1][j - 1] != '1')
 					data->map_matrix[i][j] = 'f';
 			j++;
 		}
