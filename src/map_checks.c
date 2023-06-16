@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbardett <mbardett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 18:15:45 by mbardett          #+#    #+#             */
-/*   Updated: 2022/09/20 14:27:24 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/16 21:24:44 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	check_walls_n_spawns(t_coordinate data)
 		while (x < data.map_lenght)
 		{
 			c = data.map_matrix[y][x];
-			if ((y == 0 || y == data.map_height - 1) && c != '1')
+			if ((y == 0 || y == data.map_height - 1) && (c != '1' && c != 'f'&& c != 'l'&& c!='r' && c != 'x' && c!= 'u' && c != 'b'))
 				ft_display_error(2);
-			if ((x == 0 || x == data.map_lenght - 1) && c != '1')
+			if ((x == 0 || x == data.map_lenght - 1) && (c != '1' && c != 'l'&& c!='r' && c != 'x'))
 				ft_display_error(2);
 			if (c != '1' && c != 'E' && c != 'C' && c != '0' && c != 'P'
-				&& c != 'M')
+				&& c != 'M' && c != 'f' && c != 'w'&& c != 'i' && c != 'L' && c != 'R' && c!= 'O' && c != 'l'&& c != 'r')
 				ft_display_error(3);
 			x++;
 		}

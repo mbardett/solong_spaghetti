@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 16:54:51 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/15 17:20:10 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/16 21:34:56 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(int argc, char **argv)
 	// t_gui			gui;
 	// read_file(argv[1], &data);
 
-	if (check_arg_ber(argc, argv) == 1)
+	if (check_arg_ber(argc, argv) == 2)
 	{
 		read_file(argv[1], &data);
 		check_map_requirements(&data, &game);
@@ -72,7 +72,7 @@ int	main(int argc, char **argv)
 		new_readfile(argv[1], &data);
 	}
 	// check_map_requirements(&data, &game);
-	else if (check_arg_ber(argc, argv) == 2)
+	else
 		read_file(argv[1], &data);
 	game.dimensions = &data;
 	// game.gui = gui;

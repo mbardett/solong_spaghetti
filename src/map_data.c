@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:29:51 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/15 12:59:07 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/16 20:58:07 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	new_readfile(char *nome_file, t_coordinate *data)
 	memset(data->map_matrix[data->map_height -4], 'u', data->map_lenght );
 	memset(data->map_matrix[data->map_height -1], 'b', data->map_lenght );
 	i = 1;
-	while (i < data->map_height + 1)
+	while (i < data->map_height)
 	{
 		j = 0;
 		data->map_matrix[i][0] = 'l';

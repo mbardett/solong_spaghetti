@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:06:46 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/15 17:23:52 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/16 21:26:11 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,33 +130,37 @@ void	ft_display_error(int error_type)
 	char *tmp;
 	int fd;
 	int	nbr;
-	char buf[1];
+	// char buf[1];
+	int curr_max;
 	
+	curr_max = 0;
 	dir = NULL;
 	dent = NULL;
 	nbr = -1;
 	//file = open();
-	if (opendir("~/solong_spaghetti/saves") == NULL)
+	fd = 0;
+	if ((dir = opendir("./saves")) == NULL)
 	{
-		mkdir("~/solong_spaghetti/saves", W_OK);
-		name = "000save.ber";
-		fd = open(name, O_CREAT);
+		mkdir("./saves", 0777);
+		name = "./saves/000save.ber";
+		fd = open(name, O_RDWR | O_CREAT, 777);
+		close(fd);
+		return 0;
 		
 	}
 	else
 	{
-		dir = opendir("~/solong_spaghetti/saves");
-		while (readdir(dir) != NULL)
-		{	
-			name = NULL;
-			name = ft_strjoin(name,dent->d_name);
+		dir = opendir("./saves");
+		 while ((dent = readdir(dir)) != NULL)
+		{
+		 	name = dent->d_name;
 		}
 		i = 0;
 		j = 0;
 		while (name[i] >= '0'&& name[i] <= '9')
 			i++;
 		if (i == 0)
-			name = "000save.ber";
+			name = "./saves/000save.ber";
 		else
 		{
 			tmp = malloc(sizeof(char *) * i + 1);
@@ -168,24 +172,25 @@ void	ft_display_error(int error_type)
 				j++;
 			}
 			tmp[j] = '\0';
-		}
-		name = ft_itoa(ft_atoi(tmp) + 1);
-		fd = open(name, O_CREAT);
-		i = 0;
-		while (read(fd, buf, 1) == 1)	
-		{
-			while ( i < game->dimensions->map_height)
-			{
-				j = 0;
-				while (j < game->dimensions->map_lenght)
-				{
-					write(fd, &game->dimensions->map_matrix[i][j], 1);
-					j++;		
-				}
-				i++;
-			}
+			name = ft_strjoin("./saves/",ft_itoa(ft_atoi(tmp) + 1));
+			name = ft_strjoin(name, "save.ber");
+			printf("%s\n", name);
 		}
 	}
+	fd = open(name, O_RDWR | O_CREAT, 777);
+	i = 0;
+	while ( i < game->dimensions->map_height)
+	{
+		j = 0;
+		while (j < game->dimensions->map_lenght)
+		{
+			write(fd, &game->dimensions->map_matrix[i][j], 1);
+			j++;		
+		}
+		write(fd, "\n", 1);
+		i++;
+	}
+	close(fd);
 	closedir(dir);
 	return (0);
  }
