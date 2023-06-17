@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 16:54:51 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/16 21:34:56 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/17 16:58:08 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,34 +26,100 @@ int	end_game(t_game *game)
 	exit(0);
 }
 
+int ft_wtext_handler(t_game *game)
+{
+	
+	int i = 0;
+	int j = 0;
+	int	wlen = 0;
+	int whei = 0;
+	int iw = 0;
+	int jw = 0;
+	char *buffer = NULL;
+	while (i < game->dimensions->map_height)
+	{
+		j = 0;
+		while(j < game->dimensions->map_lenght)
+		{
+			if (game->dimensions->map_matrix[i][j] == 'w')
+			{
+				iw = i;
+				jw = j;
+				while (game->dimensions->map_matrix[i][j] == 'w')
+				{
+					j++;
+					wlen++;
+				}
+				while (game->dimensions->map_matrix[i][j] == 'w')
+				{
+					i++;
+					whei++;	
+				}				
+			}
+			j++;
+		}
+		i++;
+	}
+	if (ft_strlen(game->gui.text) > (size_t)wlen)
+	{
+		i = 0;
+		j = 0;
+		buffer = malloc(sizeof(char) * ((wlen + 1) * (whei +1)));
+		while (i < whei)
+		{
+			j = 0;
+			while(j < wlen)	
+			{
+				buffer[j] = game->gui.text[i];
+				j++;			
+			}
+			buffer[j] = '\n';
+			i++;
+		}
+		buffer[j] = '\0';
+		mlx_string_put(game->mlx, game->mlx_win, j * 32, i * 32, 1315978, buffer);
+		j = j * i;
+		i = 0;
+		free(buffer);
+		buffer = malloc(sizeof(char) * ft_strlen(game->gui.text - j));
+		while (game->gui.text)
+		{
+			buffer[i] = game->gui.text[j];
+			i++;
+			j++;
+		}
+		buffer[i] = '\0';
+		game->gui.text = buffer;
+	}
+	else
+	{
+		if (game->gui.text)
+			mlx_string_put(game->mlx, game->mlx_win, jw * 32, iw * 32, 1315978, game->gui.text);
+	}
+	usleep(20000);
+	if (buffer != NULL)
+		free(buffer);
+	return (0);
+}
+
 int	mouse_hook(int button, int x,int y, t_game *game)
 {
-	int	i = 0;
-	int j = 0;
+	// int	i = 0;
+	// int j = 0;
 	
 	if (button == 1)
 	{
-		printf("X = %d Y = %d\n", x,y);
+		// printf("X = %d Y = %d\n", x,y);
 		if (x > (game->dimensions->map_lenght - 2)* 32 && x < (game->dimensions->map_lenght -1) * 32 && y > (game->dimensions->map_height -3) * 32 && y < (game->dimensions->map_height -2)*32)
 		{
-			while (i < game->dimensions->map_height)
-			{
-				j = 0;
-				while(j < game->dimensions->map_lenght)
-				{
-					if (game->dimensions->map_matrix[i][j] == 'w')
-					{
-						ft_save(game);
-						mlx_string_put(game->mlx, game->mlx_win, j * 32, i * 32, 1315978,"Game Saved\n");
-						// usleep(200000);
-						return(0);
-					}
-					j++;
-				}
-				i++;
-			}
+			ft_save(game);		
+		}
+		else if (x > (game->dimensions->map_lenght - 2)* 32 && x < (game->dimensions->map_lenght -1) * 32 && y > (game->dimensions->map_height -2) * 32 && y < (game->dimensions->map_height -1)*32)
+		{
+			ft_load(game);
 		}
 	}
+	ft_wtext_handler(game);
 	return (0);
 }
 
@@ -78,11 +144,13 @@ int	main(int argc, char **argv)
 	// game.gui = gui;
 	game_init(&game);
 	open_all_sources(&game);
+	game.gui.text = calloc(3, 1);
 	game.level_init = 1;
 	game.time = 1;
 	mlx_mouse_hook(game.mlx_win, mouse_hook, &game);
 	mlx_hook(game.mlx_win, 2, 0, deal_inputs, &game);
 	mlx_hook(game.mlx_win, 17, 0, end_game, &game);
+	mlx_loop_hook(game.mlx, ft_wtext_handler, (void *)&game);
 	mlx_loop_hook(game.mlx, draw, (void *)&game);
 	mlx_loop(game.mlx);
 	write(1, "diobo\n", 6);

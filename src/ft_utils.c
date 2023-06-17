@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:06:46 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/17 14:41:03 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/17 17:00:45 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,37 @@ void	ft_display_error(int error_type)
 		i++;
 	}
 	write(fd, "\0", 1);
-	printf("i = %d, j = %d\n", i, j);
+	// printf("i = %d, j = %d\n", i, j);
+	game->gui.text = "Game saved";
+	// printf("%s\n", game->gui.text);
 	close(fd);
+	return (1);
+ }
+
+ int ft_load(t_game *game)
+ {
+	DIR *dir;
+	struct dirent *dent;
+	char *nome_file;
+	
+	dent = NULL;
+	nome_file = NULL;
+	if ((dir = opendir("./saves")) == NULL)
+	{
+		game->gui.text = ft_strjoin(NULL, "saves directory missing!\n");
+		return(1);
+	}
+	else if (!dent->d_name )
+	{
+		game->gui.text = "no save files available\n";
+		return(1);
+	}
+	else
+	{
+		while((dent = readdir(dir)) != NULL)	
+			nome_file = dent->d_name;
+		new_readfile(nome_file, game->dimensions);
+		game->gui.text = "resuming from last save file\n";
+	}
 	return (0);
  }

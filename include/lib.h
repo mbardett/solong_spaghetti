@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 16:43:10 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/15 16:55:28 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/17 16:42:16 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ typedef struct s_gui
 	void	*inv_ur;
 	void	*inv_bl;
 	void	*inv_br;
+	char 	*text;
 
 }	t_gui;
 
@@ -223,6 +224,7 @@ void	ft_display_error(int error_type);
 int		check_spaces(const char *);
 int		ft_atoi(const char *str);
 int		ft_save(t_game *game);
+ int 	ft_load(t_game *game);
 
 //spostata nel main
 int		end_game(t_game *game);
@@ -309,4 +311,6 @@ void    draw_gui(t_game *game, int i, int j, char c);
 // void	ft_lstadd_back(t_enemy *lst, t_enemy *new);
 //DEBUG
 void	draw_map(t_coordinate map);
+//main.c
+int		ft_wtext_handler(t_game *game);
 #endif

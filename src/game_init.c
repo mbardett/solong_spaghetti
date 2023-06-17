@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:39:46 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/16 21:34:18 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/17 16:24:10 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	game_init(t_game *game)
 	// x = game->dimensions->map_height * 64;
 	y = game->dimensions->map_lenght * 32;
 	x = game->dimensions->map_height * 32;
-	game->mlx_win = mlx_new_window(game->mlx, y, x, "so_long");
+	game->mlx_win = mlx_new_window(game->mlx, y, x, "so_long spaghetti");
+	// game->gui.text = NULL;
 	game->moves_counter = 0;
 }
