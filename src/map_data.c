@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 12:29:51 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/16 20:58:07 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/17 22:16:57 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,6 @@ void	new_readfile(char *nome_file, t_coordinate *data)
 			}
 		}		
 		data->map_matrix[i][data->map_lenght -1] = 'r';
-		// data->map_matrix[i][data->map_lenght] = '\0';
 		i++;
 	}
 	data->map_matrix[0][0] = 'x';
@@ -167,21 +166,15 @@ void	new_readfile(char *nome_file, t_coordinate *data)
 	//fin qui gestiti bordi e angoli GUI, mancano copia .ber, inventario, icone, text window
 	i = 1;
 	j = 1;
-	write(1, "CULO2\n", 6);
-	// join = gnl_so_long(fd);
-	// printf("")
 	while (i < data->map_height - 5)
 	{
 		join = gnl_so_long(fd);
-		// printf("%s\n", join);
 		j = 1;
 		while (j < data->map_lenght -1)
 		{
 			data->map_matrix[i][j] = join[j -1];
-			//write(1, "joined\n", 7);
 			j++;
 		}
-		// free(join);
 		i++;
 	}
 	i = 1;
@@ -200,7 +193,6 @@ void	new_readfile(char *nome_file, t_coordinate *data)
 		i++;
 		
 	}
-	write(1, "CULO1\n", 6);
 	free(join);
 	close(fd);
 	i =0;
