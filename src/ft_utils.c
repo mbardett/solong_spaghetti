@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 17:06:46 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/16 21:26:11 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:41:03 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,35 +123,24 @@ void	ft_display_error(int error_type)
  {
 	int	i, j;
 	i = j = 0;
-	// FILE 	*file;
 	DIR		*dir;
 	struct dirent *dent;
 	char *name;
 	char *tmp;
 	int fd;
 	int	nbr;
-	// char buf[1];
 	int curr_max;
 	
 	curr_max = 0;
 	dir = NULL;
 	dent = NULL;
 	nbr = -1;
-	//file = open();
 	fd = 0;
-	if ((dir = opendir("./saves")) == NULL)
-	{
-		mkdir("./saves", 0777);
-		name = "./saves/000save.ber";
-		fd = open(name, O_RDWR | O_CREAT, 777);
-		close(fd);
-		return 0;
-		
-	}
-	else
+	name = NULL;
+	if ((dir = opendir("./saves")) != NULL)
 	{
 		dir = opendir("./saves");
-		 while ((dent = readdir(dir)) != NULL)
+		while ((dent = readdir(dir)) != NULL)
 		{
 		 	name = dent->d_name;
 		}
@@ -174,8 +163,14 @@ void	ft_display_error(int error_type)
 			tmp[j] = '\0';
 			name = ft_strjoin("./saves/",ft_itoa(ft_atoi(tmp) + 1));
 			name = ft_strjoin(name, "save.ber");
-			printf("%s\n", name);
 		}
+		closedir(dir);
+	}
+	else if (dir == NULL)
+	{
+		mkdir("./saves", 0777);
+		name = "./saves/000save.ber";
+		printf("%s\n", name);
 	}
 	fd = open(name, O_RDWR | O_CREAT, 777);
 	i = 0;
@@ -190,7 +185,8 @@ void	ft_display_error(int error_type)
 		write(fd, "\n", 1);
 		i++;
 	}
+	write(fd, "\0", 1);
+	printf("i = %d, j = %d\n", i, j);
 	close(fd);
-	closedir(dir);
 	return (0);
  }
