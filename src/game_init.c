@@ -6,7 +6,7 @@
 /*   By: mbardett <mbardett@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:39:46 by mbardett          #+#    #+#             */
-/*   Updated: 2023/06/17 16:24:10 by mbardett         ###   ########.fr       */
+/*   Updated: 2023/06/18 15:32:11 by mbardett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	check_arg_ber(int argc, char **argv)
 	if (argc != 2)
 		ft_display_error(1);
 	i = ft_strlen(argv[1]);
-	printf("%c %c %c %c %c  %c %c %c \n", argv[1][i-8], argv[1][i-7],argv[1][i-6],argv[1][i-5],argv[1][i-4],argv[1][i-3],argv[1][i-2],argv[1][i-1]);
+	// printf("%c %c %c %c %c  %c %c %c \n", argv[1][i-8], argv[1][i-7],argv[1][i-6],argv[1][i-5],argv[1][i-4],argv[1][i-3],argv[1][i-2],argv[1][i-1]);
 	if (argv[1][i - 8] != 's' || argv[1][i - 7] != 'a'|| argv[1][i - 6] != 'v'|| argv[1][i - 5] != 'e' || argv[1][i - 4] != '.'|| argv[1][i - 3] != 'b' || argv[1][i -2] != 'e' || argv[1][i -1] != 'r')
 		return (2);
 	if (argv[1][i - 1] != 'r' || argv[1][i -2] != 'e' || argv[1][i - 3] != 'b'
