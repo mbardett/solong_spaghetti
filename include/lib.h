@@ -159,7 +159,7 @@ typedef struct s_gui
 	void	*loadicon;
 	void	*optionsicon;
 	void	*resticon;
-	//INVENTORY: 4 slots,  closed backpack, when clicked opens 
+	//INVENTORY: 4 slots,  closed backpack, when clicked opens(after you drawing it)
 	void	*backp_ul;
 	void	*backp_ur;
 	void	*backp_bl;
