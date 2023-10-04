@@ -74,10 +74,6 @@ int	draw(t_game *game)
 		}
 		j++;
 	}
-	// str = ft_itoa(game->moves_counter);
-	// mlx_string_put(game->mlx, game->mlx_win, game->dimensions->map_lenght * 32,
-	// 	(game->dimensions->map_height) - 1, TEXT_COLOR, str);
-	// free(str);
 	return (1);
 }
 
@@ -100,30 +96,7 @@ int	draw_level(t_game *game, int i, int j, char c)
 			enemy_anim(game, j * 32 * f , i * 32 * f);
 		else if (c == 'x' || c == 'u' || c == 'b' || c == 'l' || c== 'r'|| c == 'w' || c == 'i' || c == 'S' || c == 'L' || c == 'O' || c == 'R')
 		{
-			// write(1, "gui\n",4);
-			// printf("i %d j %d \n", i, j);
 			gui_anim(game, j * 32, i * 32);
-			// gui_anim(game, j , i);
-			// write(1, "OPS\n",4);
 		}
-		// else if (c == 'x')
-		// 	printf("%d %d\n", i, j);
-		// 	gui_anim(game, j, i );
-		// else if (c == 'u')
-		// 	gui_anim(game, j , i );
-		// else if (c == 'b')		
-		// 	gui_anim(game, j , i );
-		// else if (c == 'l')
-		// 	gui_anim(game, j , i );			
-		// else if (c == 'r')
-		// 	gui_anim(game, j , i );
-		// else if (c == 'R')
-		// 	gui_anim(game, j , i );
-		// else if (c == 'L')
-		// 	gui_anim(game, j , i );
-		// else if ( c == 'O')
-		// 	gui_anim(game, j , i );
-		// else if (c == 'S')
-		// 	gui_anim(game, j , i );
 	return (1);
 }
