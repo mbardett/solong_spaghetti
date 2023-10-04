@@ -7,4 +7,3 @@ Basically the game takes a valid map, defines a new matrix with all the GUI elem
 I then implemented the mouse (left)click, so that if it is pressed one the same coordinates of the Save Icon then the save function is called: 
 if a "saves" doesn't exist it is created and then all the data from the level are stored in there, currently allowing a limited number of saves.
 Now it is possible to load a saved file and the program will skip the required checks for the .ber file.<br /><br />
-There are still many improvements I want to add and hopefully I'll manage to spare some time to do it in the future.
